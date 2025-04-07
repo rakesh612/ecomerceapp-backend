@@ -17,7 +17,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-const __dirname = path.resolve(); //root directory of the project
+//const __dirname = path.resolve(); //root directory of the project
 
 app.use(express.json({ limit: "10mb" })); // allows you to parse the body of the request
 app.use(cookieParser()); // allows you to parse cookies in the request
@@ -29,13 +29,13 @@ app.use("/api/coupons", couponRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/analytics", analyticsRoutes);
 
-if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "/frontend/dist")));
-// Serve the static files from the React app. whenever user visits otherthan the above routes, serve the index.html file
-	app.get("*", (req, res) => {
-		res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
-	});
-}
+// if (process.env.NODE_ENV === "production") {
+// 	app.use(express.static(path.join(__dirname, "/frontend/dist")));
+// // Serve the static files from the React app. whenever user visits otherthan the above routes, serve the index.html file
+// 	app.get("*", (req, res) => {
+// 		res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+// 	});
+// }
 
 app.listen(PORT, () => {
 	console.log("Server is running on http://localhost:" + PORT);
