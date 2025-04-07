@@ -22,7 +22,11 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json({ limit: "10mb" })); // allows you to parse the body of the request
 app.use(cookieParser()); // allows you to parse cookies in the request
-app.use(cors()); // allows you to send cookies to the server
+app.use(cors({
+    origin: "https://ecommerce-app-frontend-zeta.vercel.app",
+    credentials: true
+}));
+
 
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
