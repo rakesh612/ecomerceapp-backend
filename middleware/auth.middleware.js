@@ -34,7 +34,7 @@ export const protectRoute = async (req, res, next) => {
 
 export const adminRoute = (req, res, next) => {
 	if (req.user && req.user.role === "admin") {
-		next();
+		next(); // Allow access to the next middleware or route handler
 	} else {
 		return res.status(403).json({ message: "Access denied - Admin only" });
 	}
